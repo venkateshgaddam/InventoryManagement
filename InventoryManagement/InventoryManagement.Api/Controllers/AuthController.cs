@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Filters;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -31,6 +32,7 @@ namespace InventoryManagement.Api.Controllers
         }
 
         [HttpPost]
+        [SwaggerRequestExample(typeof(LoginModel), typeof(LoginExample))]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
@@ -43,6 +45,7 @@ namespace InventoryManagement.Api.Controllers
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim("username",user.UserName)
                 };
 
                 foreach (var userRole in userRoles)
@@ -116,6 +119,38 @@ namespace InventoryManagement.Api.Controllers
             if (await roleManager.RoleExistsAsync(UserRoles.Admin))
             {
                 await userManager.AddToRoleAsync(user, UserRoles.Admin);
+            }
+
+            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+        }
+
+
+        [HttpPost]
+        [Route("register-developer")]
+        public async Task<IActionResult> RegisterDeveloper([FromBody] RegisterModel model)
+        {
+            var userExists = await userManager.FindByNameAsync(model.Username);
+            if (userExists != null)
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+
+            ApplicationUser user = new ApplicationUser()
+            {
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.Username
+            };
+            var result = await userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+
+            if (!await roleManager.RoleExistsAsync(UserRoles.Developer))
+                await roleManager.CreateAsync(new IdentityRole(UserRoles.Developer));
+            if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+            if (await roleManager.RoleExistsAsync(UserRoles.Developer))
+            {
+                await userManager.AddToRoleAsync(user, UserRoles.Developer);
             }
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });

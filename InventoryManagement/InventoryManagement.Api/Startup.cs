@@ -1,5 +1,8 @@
 using FluentValidation.AspNetCore;
 using InventoryManagement.Api.ActionFilters;
+using InventoryManagement.Api.Biz;
+using InventoryManagement.Api.Service;
+using InventoryManagement.Data.Repository;
 using InventoryManagement.Model.EntityModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +15,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace InventoryManagement.Api
@@ -26,6 +33,10 @@ namespace InventoryManagement.Api
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
@@ -80,10 +91,38 @@ namespace InventoryManagement.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InventoryManagement.Api", Version = "v1" });
                 c.ExampleFilters();
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Description = "JWT Authorization header using the Bearer Scheme. Example: \"Authroization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference=new OpenApiReference
+                            {
+                                Id="Bearer",Type=ReferenceType.SecurityScheme
+                            },Scheme="oauth2",Name="Bearer",In=ParameterLocation.Header
+                        },
+                        new List<string>()
+                    }
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly()?.GetName()?.Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
             services.AddSwaggerExamplesFromAssemblyOf<AddProduct>();
             services.AddSwaggerExamplesFromAssemblyOf<UpdateProduct>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IProductBiz, ProductBiz>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

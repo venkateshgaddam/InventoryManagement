@@ -16,9 +16,9 @@ namespace InventoryManagement.Data.Entity
 
         public string Brand { get; set; }
 
-        public int Category { get; set; }
+        public string Category { get; set; }
 
-        public int SubCategory { get; set; }
+        public string SubCategory { get; set; }
 
         public bool IsAvailable { get; set; }
 

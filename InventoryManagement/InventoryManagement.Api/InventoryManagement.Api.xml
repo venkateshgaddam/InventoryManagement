@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InventoryManagement.Api</name>
+    </assembly>
+    <members>
+        <member name="M:InventoryManagement.Api.Biz.IProductBiz.AddProduct(InventoryManagement.Model.EntityModels.AddProduct,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="addProduct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Biz.IProductBiz.UpdateProduct(InventoryManagement.Model.EntityModels.UpdateProduct,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="addProduct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Biz.IProductBiz.GetProduct(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="ProductId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Biz.IProductBiz.DeleteProduct(System.Guid,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ProductId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InventoryManagement.Api.Controllers.ProductController">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="M:InventoryManagement.Api.Controllers.ProductController.#ctor(InventoryManagement.Api.Biz.IProductBiz)">
+            <summary>
+            
+            </summary>
+            <param name="productBiz"></param>
+        </member>
+        <member name="M:InventoryManagement.Api.Controllers.ProductController.Get(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="ProductId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Controllers.ProductController.Post(InventoryManagement.Model.EntityModels.AddProduct)">
+            <summary>
+                 Adds the new Product in the Product InMemory DB 
+            </summary>
+            <param name="addProduct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Controllers.ProductController.Put(InventoryManagement.Model.EntityModels.UpdateProduct)">
+            <summary>
+            
+            </summary>
+            <param name="updateProduct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Controllers.ProductController.Delete(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="productId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Service.IProductService.AddProduct(InventoryManagement.Data.Entity.Product)">
+            <summary>
+            
+            </summary>
+            <param name="addProduct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Service.IProductService.UpdateProduct(InventoryManagement.Data.Entity.Product)">
+            <summary>
+            
+            </summary>
+            <param name="addProduct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Service.IProductService.GetProduct(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="ProductId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Service.IProductService.DeleteProduct(InventoryManagement.Data.Entity.Product)">
+            <summary>
+            
+            </summary>
+            <param name="ProductId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InventoryManagement.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:InventoryManagement.Api.Validator.AddProductValidator">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

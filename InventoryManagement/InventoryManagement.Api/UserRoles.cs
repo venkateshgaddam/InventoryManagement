@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Swashbuckle.AspNetCore.Filters;
+using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagement.Api
 {
@@ -36,5 +37,17 @@ namespace InventoryManagement.Api
     {
         public string Status { get; set; }
         public string Message { get; set; }
+    }
+
+    public class LoginExample : IExamplesProvider<LoginModel>
+    {
+        public LoginModel GetExamples()
+        {
+            return new LoginModel()
+            {
+                Username = "user_dev",
+                Password = "Admin@123"
+            };
+        }
     }
 }

@@ -1,28 +1,21 @@
 ﻿using FluentValidation;
+using InventoryManagement.Data.Entity;
+using InventoryManagement.Data.Repository;
 using InventoryManagement.Model.EntityModels;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace InventoryManagement.Model.Validator
+namespace InventoryManagement.Api.Validator
 {
     /// <summary>
-    ///     This class is used for defining the rules for API request Validation using FLUENTVALIDATION API
+    /// 
     /// </summary>
     public class AddProductValidator : AbstractValidator<AddProduct>
     {
-        // Manually assigning the Subcategories for simple Validation,
-        // else Fetch them from DB. Since I am using In Memory DB
-        // for the CRUD Operations mentioning these data Manually.
+        // Manually assigning the Subcategories for simple Validation, else Fetch them from DB. Since I am using In Memory DB for the CRUD Operations mentioning these data Manually.
         readonly List<string> subCategories = new List<string>()
         {
             "Shoes","Slippers","sandals","Heels","Sneakers","RunningShoes","Gym Shoes","TrekkingShoes","Formals","FlipFlops","Flats"
-        };
-
-        // Manually assigning the Subcategories for simple Validation,
-        // else Fetch them from DB. Since I am using In Memory DB 
-        // for the CRUD Operations mentioning these data Manually.
-        readonly List<string> categories = new List<string>()
-        {
-            "Apparel","Footwear","Shirts","Jeans","SweatShirts"
         };
 
         public AddProductValidator()
@@ -33,9 +26,9 @@ namespace InventoryManagement.Model.Validator
             RuleFor(a => a.Category).NotEmpty().WithMessage("Category is missing")
                 .Custom((a, context) =>
                 {
-                    if (!categories.Contains(a))
+                    if (a.ToLower() != "apparel")
                     {
-                        context.AddFailure(context.DisplayName, $"Category should be in {string.Join(',', categories)}");
+                        context.AddFailure(context.DisplayName, "InValid Category");
                     }
 
                 });

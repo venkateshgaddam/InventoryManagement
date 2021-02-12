@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagement.Data.Repository
 {
-    class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         #region Properties
 
@@ -76,7 +76,7 @@ namespace InventoryManagement.Data.Repository
         public async Task<Product> GetProduct(Guid ProductId)
         {
             using var context = new ProductContext(dbContextOptions);
-            return await context.Products.FirstOrDefaultAsync(a => a.ProductId == ProductId);
+            return await context.Products.FirstOrDefaultAsync(a => a.ProductId == ProductId && a.IsAvailable && !a.IsDelete);
         }
 
         /// <summary>
