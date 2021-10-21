@@ -42,6 +42,11 @@ namespace InventoryManagement.Api.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        [HttpGet("Gets")]
+        public IEnumerable<string> Get2()
+        {
+            return new string[] { "value1", "value2" };
+        }
         /// <summary>
         /// 
         /// </summary>

@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using IM.Common.Model.EntityModels;
 using InventoryManagement.Api.ActionFilters;
 using InventoryManagement.Api.Biz;
 using InventoryManagement.Api.Service;
@@ -83,8 +84,8 @@ namespace InventoryManagement.Api
                 options.Filters.Add<ValidationFilter>();
             }).AddFluentValidation(fv =>
             {
-                fv.RegisterValidatorsFromAssemblyContaining<AddProduct>();
-                fv.RegisterValidatorsFromAssemblyContaining<UpdateProduct>();
+                fv.RegisterValidatorsFromAssemblyContaining<RegisterUserModel>();
+                fv.RegisterValidatorsFromAssemblyContaining<UserAddress>();
             });
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -120,7 +121,7 @@ namespace InventoryManagement.Api
 
             services.AddSwaggerExamplesFromAssemblyOf<AddProduct>();
             services.AddSwaggerExamplesFromAssemblyOf<UpdateProduct>();
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IProductRepository<>), typeof(ProductRepository<>));
             services.AddScoped<IProductBiz, ProductBiz>();
             services.AddScoped<IProductService, ProductService>();
         }

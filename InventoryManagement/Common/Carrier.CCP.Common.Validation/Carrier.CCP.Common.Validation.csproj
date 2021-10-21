@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Carrier.CCP.Common.Cache\Carrier.CCP.Common.Cache.csproj" />
+    <ProjectReference Include="..\Carrier.CCP.Common.Utility.Helper\Carrier.CCP.Common.Utility.Helper.csproj" />
+    <ProjectReference Include="..\Carrier.CCP.Common.Utils\Carrier.CCP.Common.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

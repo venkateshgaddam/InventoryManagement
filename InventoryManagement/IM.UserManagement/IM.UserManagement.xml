@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IM.UserManagement</name>
+    </assembly>
+    <members>
+        <member name="T:IM.UserManagement.V1.Controllers.UserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IM.UserManagement.V1.Controllers.UserController.RegisterUser(IM.Common.Model.EntityModels.RegisterUserModel,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            
+            </summary>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.UserManagement.Controllers.V2.UserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IM.UserManagement.Controllers.V2.UserController.RegisterUser(IM.Common.Model.EntityModels.RegisterUserModel,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            
+            </summary>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.UserManagement.Helpers.SwaggerFileOperationFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IM.UserManagement.Helpers.SwaggerFileOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:IM.UserManagement.LambdaEntryPoint">
+            <summary>
+            This class extends from APIGatewayProxyFunction which contains the method FunctionHandlerAsync which is the 
+            actual Lambda function entry point. The Lambda handler field should be set to
+            
+            IM.UserManagement::IM.UserManagement.LambdaEntryPoint::FunctionHandlerAsync
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:IM.UserManagement.LambdaEntryPoint.Init(Microsoft.AspNetCore.Hosting.IWebHostBuilder)" -->
+        <member name="M:IM.UserManagement.LambdaEntryPoint.Init(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            Use this override to customize the services registered with the IHostBuilder. 
+            
+            It is recommended not to call ConfigureWebHostDefaults to configure the IWebHostBuilder inside this method.
+            Instead customize the IWebHostBuilder in the Init(IWebHostBuilder) overload.
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:IM.UserManagement.LocalEntryPoint">
+            <summary>
+            The Main function can be used to run the ASP.NET Core application locally using the Kestrel webserver.
+            </summary>
+        </member>
+        <member name="T:IM.UserManagement.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IM.UserManagement.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:IM.UserManagement.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IM.UserManagement.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:IM.UserManagement.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

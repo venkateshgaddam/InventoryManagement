@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "InventoryManagement.Api": {
+    "IM.Command": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

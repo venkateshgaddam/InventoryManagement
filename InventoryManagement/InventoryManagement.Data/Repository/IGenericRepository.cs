@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagement.Data.Repository
 {
-    public interface IGenericRepository<TEntity> where TEntity : class
+    public interface IProductRepository<TEntity> where TEntity : class
     {
         /// <summary>
         /// 

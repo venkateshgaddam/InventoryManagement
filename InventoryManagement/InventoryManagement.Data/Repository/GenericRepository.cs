@@ -2,14 +2,11 @@
 using InventoryManagement.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace InventoryManagement.Data.Repository
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class ProductRepository<T> : IProductRepository<T> where T : class
     {
         #region Properties
 
@@ -20,7 +17,7 @@ namespace InventoryManagement.Data.Repository
 
         #region Constructor
 
-        public GenericRepository()
+        public ProductRepository()
         {
             dbContextOptions = new DbContextOptionsBuilder<ProductContext>()
                                             .UseInMemoryDatabase(databaseName: "Product")

@@ -1,9 +1,6 @@
 ﻿using FluentValidation;
-using InventoryManagement.Data.Entity;
-using InventoryManagement.Data.Repository;
 using InventoryManagement.Model.EntityModels;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace InventoryManagement.Api.Validator
 {
